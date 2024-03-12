@@ -13,7 +13,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        home: Scaffold(body: SafeArea(child: HomeScreen())));
+      home: Scaffold(
+        body: SafeArea(child: HomeScreen()),
+      ),
+    );
   }
 }
 
@@ -73,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
     <body>
       <div class="embed-iframe">
-        <iframe src="https://youtube.com/embed/9bZkp7q19f0"
+        <iframe src="https://player.scaleup.com.br/embed/510c42b9fde8af543194ea9fdc0296149cc5a1a5"
           title=""
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; autoplay; muted;fullscreen;"
           allowfullscreen webkitallowfullscreen style="width: 100%; aspect-ratio: 16 / 9; border: 0px; margin: 0px auto; padding: 0px;"></iframe>
@@ -117,8 +120,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void load() {
     loadHtml();
-    _controller = null;
-    setState(() {});
     PlatformWebViewControllerCreationParams params = getParams();
 
     WebViewController controller =
@@ -141,16 +142,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Column(
       children: [
+        const Text(
+          'WebView_Flutter',
+          style: TextStyle(color: Colors.black),
+        ),
+        const SizedBox(height: 24),
         Expanded(
           child: WebViewWidget(controller: _controller!),
         ),
-        InkWell(
-          onTap: () => load(),
-          child: Text(
-            'Reload',
-            style: TextStyle(color: Colors.black),
-          ),
-        )
       ],
     );
   }
